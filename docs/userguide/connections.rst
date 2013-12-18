@@ -170,7 +170,8 @@ Transport Comparison
 +---------------+----------+------------+------------+---------------+--------------+
 | *SLMQ*        | Virtual  | Yes        | Yes [#f1]_ | No            | No           |
 +---------------+----------+------------+------------+---------------+--------------+
-
+| *marconi*     | Virtual  | Yes        | Yes        | No            | No           |
++---------------+----------+------------+------------+---------------+--------------+
 
 .. [#f1] Declarations only kept in memory, so exchanges/queues
          must be declared by all clients that needs them.
