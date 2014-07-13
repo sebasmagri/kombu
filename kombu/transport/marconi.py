@@ -8,7 +8,6 @@ from kombu.transport import virtual
 from kombu.utils.encoding import safe_str
 
 
-
 # dots are replaced by dash, all other punctuation replaced by underscore.
 CHARS_REPLACE_TABLE = dict(
     (ord(c), ord("_"))
@@ -48,9 +47,9 @@ class Channel(virtual.Channel):
         })
 
     def _get(self, queue):
-        # TODO: Use a claim here once marconiclient supports them, otherwise
-        # there is a race condition with concurrent ``_get()`` calls.
-        msgs = self.client.queue(self._mangle_queue(queue)).messages(
+        # Use a claim here, otherwise there is a race condition with
+        # concurrent ``_get()`` calls. With API 1.1, pop might be used here
+        msgs = self.client.queue(self._mangle_queue(queue)).claim(
             limit=1, echo=True
         )
         if not msgs:
